@@ -1,3 +1,5 @@
+// deno-lint-ignore-file no-unused-vars
+
 const PASS_THRESHOLD = 90;
 
 // 8-Sector Dependency Tree Connections
