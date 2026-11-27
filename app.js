@@ -400,7 +400,7 @@ function closeModals() {
 
 document.querySelectorAll(".close-modal").forEach(b => b.addEventListener("click", closeModals));
 document.getElementById("btn-guide").addEventListener("click", () => document.getElementById("guide-modal").classList.remove("hidden"));
-window.addEventListener("keydown", e => { if (e.key === "Escape") closeModals(); });
+globalThis.addEventListener("keydown", e => { if (e.key === "Escape") closeModals(); });
 
 document.getElementById("btn-export").addEventListener("click", () => {
   const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
