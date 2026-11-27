@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CYBER//GRID — Personal Cybersecurity Mastery Roadmap</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <!-- Top Navigation & Backup Controls -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="pulse-dot"></span>
+      <span class="brand-title">CYBER<span class="accent">//</span>GRID</span>
+      <span class="badge">PASS >= 90%</span>
+    </div>
+
+    <div class="global-metrics">
+      <div class="metric">
+        <span class="metric-label">STEPS PASSED</span>
+        <span id="global-steps" class="metric-value">0 / 0 (0%)</span>
+      </div>
+      <div class="metric">
+        <span class="metric-label">VIDEO SERIES</span>
+        <span id="global-videos" class="metric-value accent-cyan">0%</span>
+      </div>
+    </div>
+
+    <div class="backup-controls">
+      <button id="btn-export" class="btn btn-outline" title="Download permanent JSON backup">Export Backup</button>
+      <label class="btn btn-outline" title="Restore progress from JSON backup">
+        Import
+        <input type="file" id="input-import" accept=".json" hidden />
+      </label>
+      <button id="btn-reset" class="btn btn-danger" title="Wipe all saved progress">Reset</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Interactive Sector Dependency Tree -->
+    <section class="tree-section">
+      <div class="section-header">
+        <div>
+          <h2>[00] SKILL DEPENDENCY TREE</h2>
+          <p class="muted">Click any sector node to open its step-by-step notes, video playlists, and 90% mastery exams.</p>
+        </div>
+        <div class="tree-legend">
+          <span><i class="dot dot-done"></i> Completed</span>
+          <span><i class="dot dot-active"></i> In Progress</span>
+          <span><i class="dot dot-idle"></i> Not Started</span>
+        </div>
+      </div>
+
+      <div class="tree-wrapper">
+        <svg id="tree-svg" class="tree-svg" viewBox="0 0 1000 390" preserveAspectRatio="xMidYMid meet">
+          <!-- Connection lines rendered dynamically by app.js -->
+        </svg>
+        <div id="tree-nodes" class="tree-nodes"></div>
+      </div>
+    </section>
+
+    <!-- Active Sector Workspace -->
+    <section class="sector-workspace" id="sector-workspace">
+      <div class="sector-banner">
+        <div>
+          <span id="sector-tag" class="sector-tag">SECTOR // 01</span>
+          <h1 id="sector-title">Loading...</h1>
+          <p id="sector-desc" class="muted"></p>
+        </div>
+        <div class="sector-stats-box">
+          <div class="stat-row">
+            <span>Steps Mastered</span>
+            <strong id="sector-step-pct">0%</strong>
+          </div>
+          <div class="progress-bar"><div id="sector-step-bar" class="progress-fill"></div></div>
+          <div class="stat-row" style="margin-top: 10px;">
+            <span>Video Series Completed</span>
+            <strong id="sector-vid-pct" class="accent-cyan">0%</strong>
+          </div>
+          <div class="progress-bar"><div id="sector-vid-bar" class="progress-fill fill-cyan"></div></div>
+        </div>
+      </div>
+
+      <!-- Steps Grid -->
+      <div id="steps-container" class="steps-grid"></div>
+    </section>
+  </main>
+
+  <!-- Step Detail & Video Modal -->
+  <div id="step-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span id="modal-step-badge" class="badge">STEP 01</span>
+          <h2 id="modal-step-title"></h2>
+        </div>
+        <button class="icon-btn" id="close-step-modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="note-block">
+          <h3>// CONCISE FIELD NOTE</h3>
+          <p id="modal-step-note"></p>
+        </div>
+
+        <div class="example-block">
+          <h3>// REAL-LIFE EXAMPLE</h3>
+          <p id="modal-step-example"></p>
+        </div>
+
+        <div class="topics-block">
+          <h3>// CORE SUB-TOPICS TESTED</h3>
+          <div id="modal-step-topics" class="chip-list"></div>
+        </div>
+
+        <div class="video-block">
+          <div class="video-header">
+            <h3>// CURATED VIDEO SERIES</h3>
+            <span id="modal-video-pct" class="accent-cyan mono">0% Completed</span>
+          </div>
+          <p class="muted small">Check off each video/playlist after finishing it to permanently record your course progress.</p>
+          <div id="modal-video-list" class="video-list"></div>
+        </div>
+
+        <div id="modal-weakness-alert" class="weakness-alert hidden"></div>
+      </div>
+
+      <div class="modal-footer">
+        <div id="modal-exam-meta" class="mono small muted"></div>
+        <button id="btn-start-exam" class="btn btn-primary">START EXAM</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exam Modal -->
+  <div id="exam-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card modal-wide">
+      <div class="modal-header">
+        <div>
+          <span id="exam-badge" class="badge">MASTERY EXAM // 90% REQUIRED</span>
+          <h2 id="exam-title"></h2>
+        </div>
+        <button class="icon-btn" id="close-exam-modal">&times;</button>
+      </div>
+
+      <div id="exam-body" class="modal-body"></div>
+
+      <div class="modal-footer" id="exam-footer">
+        <span id="exam-progress-text" class="mono small muted"></span>
+        <button id="btn-submit-exam" class="btn btn-primary">SUBMIT ANSWERS</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
